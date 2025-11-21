@@ -26,7 +26,7 @@ body {
 
 .banner {
   background: linear-gradient(rgba(210, 188, 163, 0.3), rgba(210, 188, 163, 0.3)),
-    url("../../images/riverside_academy.png") center/cover;
+    url("../../images/canvas_color_art_academy.png") center/cover;
   height: 500px;
   display: flex;
   align-items: center;
