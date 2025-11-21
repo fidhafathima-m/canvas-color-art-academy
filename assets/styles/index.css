@@ -1,0 +1,107 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #4a4a4a;
+  background-color: #fdfbf7;
+}
+
+.navbar {
+  background-color: #d4a574;
+  padding: 1rem 0;
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.nav-link {
+  color: #fff !important;
+  margin: 0 15px;
+}
+
+.nav-link:hover {
+  color: #f9f3e8 !important;
+}
+
+.banner {
+  background: linear-gradient(rgba(210, 188, 163, 0.3), rgba(210, 188, 163, 0.3)),
+    url("../../images/riverside_academy.png") center/cover;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.banner h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.banner p {
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.content-section {
+  padding: 60px 0;
+  background-color: #fdfbf7;
+}
+
+.feature-box {
+  padding: 30px;
+  margin-bottom: 30px;
+  border-left: 4px solid #b1824fff;
+  background: #f9f3e8;
+  border-radius: 8px;
+}
+
+.feature-box h3 {
+  color: #b8865f;
+  margin-bottom: 15px;
+}
+
+footer {
+  background-color: #c29462ff;
+  color: #fff;
+  padding: 40px 0 20px;
+}
+
+footer a {
+  color: #fdfbf7;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: #f9f3e8;
+}
+
+.social-icons a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 1.3rem;
+}
+
+.social-icons a:hover {
+  color: #f9f3e8;
+}
+
+h2, h3 {
+  color: #7d5a3a;
+}
+
+@media (max-width: 768px) {
+  .banner h1 {
+    font-size: 2rem;
+  }
+  .banner p {
+    font-size: 1.1rem;
+  }
+}
