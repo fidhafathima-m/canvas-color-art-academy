@@ -77,53 +77,16 @@ async function loadDashboardData() {
   }
 }
 
-// Mobile menu toggle functionality
-const mobileMenuToggle = document.getElementById("mobileMenuToggle");
-const sidebar = document.getElementById("sidebar");
-const sidebarOverlay = document.getElementById("sidebarOverlay");
-
-function toggleMobileMenu() {
-  sidebar.classList.toggle("active");
-  sidebarOverlay.classList.toggle("active");
-}
-
-mobileMenuToggle.addEventListener("click", toggleMobileMenu);
-sidebarOverlay.addEventListener("click", toggleMobileMenu);
-
-// Close mobile menu when clicking nav links on mobile
-const navLinks = document.querySelectorAll(".sidebar .nav-link");
-navLinks.forEach((link) => {
-  link.addEventListener("click", function () {
-    if (window.innerWidth <= 576) {
-      toggleMobileMenu();
-    }
-  });
-});
-
-// Active link handling
-navLinks.forEach((link) => {
-  link.addEventListener("click", function (e) {
-    if (this.id !== "logoutBtn") {
-      e.preventDefault();
-      navLinks.forEach((l) => l.classList.remove("active"));
-      this.classList.add("active");
-    }
-  });
-});
-
 // Logout function
 async function logout() {
   try {
     const token = localStorage.getItem("token");
-    const confirm = confirm("Are you sure you want to logout?");
-    if (confirm) {
-      await fetch(`${API_BASE}/auth/logout`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    }
+    await fetch(`${API_BASE}/auth/logout`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   } catch (error) {
     console.error("Logout error:", error);
   } finally {

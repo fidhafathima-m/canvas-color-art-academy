@@ -6,73 +6,68 @@
     <title>Admin Dashboard - Canvas & Color Art Academy</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/styles/admin_dashboard.css">
+    <link rel="stylesheet" href="../assets/styles/admin_dashboard.css">
 </head>
 <body>
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="sidebar" id="sidebar">
-                <div class="sidebar-header">
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="p-3">
                     <h4>Art Academy Admin</h4>
                 </div>
                 <nav class="nav flex-column">
-                    <a class="nav-link active" href="#" data-page="dashboard">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span>Dashboard</span>
+                    <a class="nav-link active" href="#">
+                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                     </a>
-                    <a class="nav-link" href="#" data-page="students">
-                        <i class="fas fa-users"></i>
-                        <span>Students</span>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-users me-2"></i>Students
                     </a>
-                    <a class="nav-link" href="#" data-page="courses">
-                        <i class="fas fa-book"></i>
-                        <span>Courses</span>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-book me-2"></i>Courses
                     </a>
-                    <a class="nav-link" href="#" data-page="reports">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>Reports</span>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-chart-bar me-2"></i>Reports
                     </a>
                     <a class="nav-link" href="#" id="logoutBtn">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
+                        <i class="fas fa-sign-out-alt me-2"></i>Logout
                     </a>
                 </nav>
             </div>
 
             <!-- Main Content -->
-            <div class="main-content">
-                <div class="content-wrapper">
-                    <div class="dashboard-header">
+            <div class="col-md-9 col-lg-10 main-content">
+                <div class="p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
                         <h2>Admin Dashboard</h2>
-                        <span id="welcomeMessage">Welcome, Admin</span>
+                        <span id="welcomeMessage" class="text-muted"></span>
                     </div>
 
                     <!-- Stats Cards -->
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <h5>Total Students</h5>
-                            <h3 id="totalStudents">156</h3>
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <h5>Total Students</h5>
+                                <h3 id="totalStudents">0</h3>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <h5>Active Courses</h5>
-                            <h3 id="activeCourses">12</h3>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <h5>Active Courses</h5>
+                                <h3 id="activeCourses">0</h3>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <h5>Revenue</h5>
-                            <h3 id="revenue">₹4,50,000</h3>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <h5>Revenue</h5>
+                                <h3 id="revenue">₹0</h3>
+                            </div>
                         </div>
-                        <div class="stat-card">
-                            <h5>New Enrollments</h5>
-                            <h3 id="newEnrollments">23</h3>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <h5>New Enrollments</h5>
+                                <h3 id="newEnrollments">0</h3>
+                            </div>
                         </div>
                     </div>
 
@@ -83,7 +78,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Welcome to Admin Dashboard</h5>
                                     <p class="card-text" id="dashboardMessage">
-                                        Manage your art academy efficiently from this dashboard. Monitor student progress, track course enrollments, analyze revenue trends, and oversee all administrative tasks from this centralized control panel.
+                                        Manage your art academy efficiently from this dashboard.
                                     </p>
                                 </div>
                             </div>
