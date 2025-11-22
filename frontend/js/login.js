@@ -27,9 +27,30 @@ function hideAlerts() {
   document.getElementById("successAlert").style.display = "none";
 }
 
+function showLoading() {
+  const loginBtn = document.getElementById("loginBtn");
+  const btnText = loginBtn.querySelector(".btn-text");
+  const btnLoading = loginBtn.querySelector(".btn-loading");
+
+  loginBtn.disabled = true;
+  btnText.style.display = "none";
+  btnLoading.style.display = "inline";
+}
+
+function hideLoading() {
+  const loginBtn = document.getElementById("loginBtn");
+  const btnText = loginBtn.querySelector(".btn-text");
+  const btnLoading = loginBtn.querySelector(".btn-loading");
+
+  loginBtn.disabled = false;
+  btnText.style.display = "inline";
+  btnLoading.style.display = "none";
+}
+
 // Login function
 async function login(email, password) {
   try {
+    showLoading();
     const response = await fetch(`${API_BASE}/auth/login`, {
       method: "POST",
       headers: {
@@ -60,10 +81,12 @@ async function login(email, password) {
       }, 1500);
     } else {
       showAlert(data.message || "Login failed");
+      hideLoading();
     }
   } catch (error) {
     console.error("Login error:", error);
     showAlert("Network error. Please try again.");
+    hideLoading();
   }
 }
 
