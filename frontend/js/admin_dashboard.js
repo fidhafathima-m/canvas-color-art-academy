@@ -1,6 +1,47 @@
 const API_BASE = "https://canvas-color-backend.onrender.com/api";
 let currentUser = null;
 
+// Mobile sidebar functionality
+function initSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    
+    // Toggle sidebar on hover (desktop)
+    sidebar.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 768) {
+            sidebar.classList.add('expanded');
+            mainContent.classList.add('expanded');
+        }
+    });
+    
+    sidebar.addEventListener('mouseleave', () => {
+        if (window.innerWidth > 768) {
+            sidebar.classList.remove('expanded');
+            mainContent.classList.remove('expanded');
+        }
+    });
+    
+    // Toggle sidebar on click (mobile)
+    mobileMenuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('expanded');
+        sidebarOverlay.classList.toggle('active');
+    });
+    
+    // Close sidebar when clicking overlay
+    sidebarOverlay.addEventListener('click', () => {
+        sidebar.classList.remove('expanded');
+        sidebarOverlay.classList.remove('active');
+    });
+    
+    // Initialize Bootstrap tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+}
+
 // Check authentication
 async function checkAuth() {
   const token = localStorage.getItem("token");
@@ -36,6 +77,7 @@ async function checkAuth() {
 
     displayUserInfo();
     loadDashboardData();
+    initSidebar();
   } catch (error) {
     console.error("Auth check failed:", error);
     localStorage.removeItem("token");

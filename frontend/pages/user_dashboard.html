@@ -6,60 +6,79 @@
     <title>Student Dashboard - Canvas & Color Art Academy</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/styles/user_dashboard.css">
+    <link rel="stylesheet" href="/assets/styles/user_dashboard.css">
 </head>
 <body>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3 col-lg-2 sidebar">
-                <div class="p-3 text-center">
-                    <h4><i class="fas fa-palette me-2"></i>Art Academy</h4>
-                    <small>Student Portal</small>
+            <div class="col-md-3 col-lg-2 sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-palette me-2"></i>
+                        <span class="brand-text">Student Portal</span>
+                    </div>
                 </div>
                 <nav class="nav flex-column">
-                    <a class="nav-link active" href="#">
-                        <i class="fas fa-tachometer-alt"></i>Dashboard
+                    <a class="nav-link active" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span class="nav-text">Dashboard</span>
                     </a>
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-book"></i>My Courses
+                    <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="My Courses">
+                        <i class="fas fa-book"></i>
+                        <span class="nav-text">My Courses</span>
                     </a>
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-calendar-alt"></i>Schedule
+                    <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Schedule">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span class="nav-text">Schedule</span>
                     </a>
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-chart-line"></i>Progress
+                    <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Progress">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="nav-text">Progress</span>
                     </a>
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-award"></i>Achievements
+                    <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Achievements">
+                        <i class="fas fa-award"></i>
+                        <span class="nav-text">Achievements</span>
                     </a>
-                    <a class="nav-link" href="#">
-                        <i class="fas fa-user"></i>Profile
+                    <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Profile">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-text">Profile</span>
                     </a>
-                    <a class="nav-link" href="#" id="logoutBtn">
-                        <i class="fas fa-sign-out-alt"></i>Logout
+                    <a class="nav-link" href="#" id="logoutBtn" data-bs-toggle="tooltip" data-bs-placement="right" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-text">Logout</span>
                     </a>
                 </nav>
             </div>
 
             <!-- Main Content -->
-            <div class="col-md-9 col-lg-10 main-content">
-                <div class="p-4">
+            <div class="col-md-9 col-lg-10 main-content" id="mainContent">
+                <div class="content-wrapper">
                     <!-- Header -->
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <div>
+                    <div class="dashboard-header">
+                        <div class="header-content">
                             <h2 class="mb-1">Student Dashboard</h2>
                             <p class="text-muted mb-0" id="welcomeMessage">Welcome back!</p>
                         </div>
-                        <div class="d-flex align-items-center">
+                        <div class="header-actions">
                             <div class="position-relative me-3">
                                 <i class="fas fa-bell fa-lg text-muted"></i>
                                 <span class="notification-badge">3</span>
                             </div>
-                            <div class="avatar me-2" id="userAvatar">SU</div>
-                            <div>
-                                <strong id="userName">Student User</strong>
-                                <div class="text-muted small" id="userRole">Student</div>
+                            <div class="user-profile">
+                                <div class="avatar me-2" id="userAvatar">SU</div>
+                                <div class="user-info">
+                                    <strong id="userName">Student User</strong>
+                                    <div class="text-muted small" id="userRole">Student</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -67,59 +86,77 @@
                     <!-- Welcome Card -->
                     <div class="welcome-card">
                         <div class="row align-items-center">
-                            <div class="col-md-8">
+                            <div class="col-lg-8 col-md-7">
                                 <h3 id="greetingMessage">Hello, Creative Mind!</h3>
                                 <p class="mb-0">Continue your artistic journey. You're doing amazing!</p>
                             </div>
-                            <div class="col-md-4 text-end">
+                            <div class="col-lg-4 col-md-5 text-end">
                                 <i class="fas fa-paint-brush fa-4x opacity-75"></i>
                             </div>
                         </div>
                     </div>
 
                     <!-- Stats Cards -->
-                    <div class="row mb-4">
-                        <div class="col-md-3 mb-3">
+                    <div class="row stats-row">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-3">
                             <div class="stat-card">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h5 class="text-muted">Enrolled Courses</h5>
-                                        <h3 id="enrolledCourses">3</h3>
-                                    </div>
-                                    <i class="fas fa-book-open fa-2x text-primary"></i>
+                                <div class="stat-icon">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h5>Enrolled Courses</h5>
+                                    <h3 id="enrolledCourses">3</h3>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-3">
                             <div class="stat-card">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h5 class="text-muted">Overall Progress</h5>
-                                        <h3 id="overallProgress">65%</h3>
-                                    </div>
-                                    <i class="fas fa-chart-line fa-2x text-success"></i>
+                                <div class="stat-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h5>Overall Progress</h5>
+                                    <h3 id="overallProgress">65%</h3>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-3">
                             <div class="stat-card">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h5 class="text-muted">Assignments Due</h5>
-                                        <h3 id="assignmentsDue">2</h3>
-                                    </div>
-                                    <i class="fas fa-tasks fa-2x text-warning"></i>
+                                <div class="stat-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h5>Assignments Due</h5>
+                                    <h3 id="assignmentsDue">2</h3>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-3">
                             <div class="stat-card">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <h5 class="text-muted">Certificates</h5>
-                                        <h3 id="certificatesEarned">1</h3>
+                                <div class="stat-icon">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <h5>Certificates</h5>
+                                    <h3 id="certificatesEarned">1</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Courses Section -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">
+                                        <i class="fas fa-book me-2"></i>My Courses
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div id="coursesList">
+                                        <!-- Courses will be loaded here -->
                                     </div>
-                                    <i class="fas fa-award fa-2x text-info"></i>
                                 </div>
                             </div>
                         </div>
@@ -129,6 +166,7 @@
         </div>
     </div>
 
-    <script src="../js/user_dashboard.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/user_dashboard.js"></script>
 </body>
 </html>
