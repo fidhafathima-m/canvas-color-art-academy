@@ -1,4 +1,3 @@
-// Component loader function
 function includeComponent(selector, url) {
     return fetch(url)
         .then(response => {
@@ -9,12 +8,11 @@ function includeComponent(selector, url) {
         })
         .then(data => {
             document.querySelector(selector).innerHTML = data;
-            console.log(`✅ Component loaded: ${url}`);
         })
         .catch(error => {
-            console.error('❌ Error loading component:', error);
+            console.error('Error loading component:', error);
             document.querySelector(selector).innerHTML = 
-                `<div style="color: red; padding: 10px; text-align: center; background: #fee;">
+                `<div style="color: red; padding: 20px; text-align: center;">
                     Navigation temporarily unavailable
                 </div>`;
         });
@@ -24,12 +22,17 @@ function includeComponent(selector, url) {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Loading components...');
     
-    // Use absolute paths from the root of your frontend folder
-    const basePath = window.location.origin + '/frontend';
+    // For Vercel deployment 
+    const isVercel = window.location.hostname.includes('vercel.app');
     
-    // Load header
-    includeComponent('#header-container', `${basePath}/components/header.html`);
-    
-    // Load footer
-    includeComponent('#footer-container', `${basePath}/components/footer.html`);
+    if (isVercel) {
+        // Vercel deployment
+        includeComponent('#header-container', '/components/header.html');
+        includeComponent('#footer-container', '/components/footer.html');
+    } else {
+        // Local development
+        const basePath = window.location.pathname.includes('/pages/') ? '..' : '.';
+        includeComponent('#header-container', `${basePath}/components/header.html`);
+        includeComponent('#footer-container', `${basePath}/components/footer.html`);
+    }
 });
