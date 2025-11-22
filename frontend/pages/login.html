@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Canvas & Color Art Academy</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles/index.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #faf8f5;
+    }
+
+    /* Main Login Container */
+    .login-wrapper {
+      min-height: calc(100vh - 140px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+    }
+
+    .login-content {
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    /* Left Side - Form */
+    .form-section {
+      padding: 2rem 3rem;
+    }
+
+    .form-section h2 {
+      color: #bf8b5b;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .form-section p {
+      color: #8b7355;
+      margin-bottom: 2.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-label {
+      display: block;
+      color: #6b5644;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 0;
+      border: none;
+      border-bottom: 2px solid #d4a574;
+      background: transparent;
+      font-size: 1rem;
+      color: #333;
+      transition: border-color 0.3s ease;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-bottom-color: #bf8b5b;
+    }
+
+    .form-input::placeholder {
+      color: #b8a590;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 0.9rem;
+      background-color: #bf8b5b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .btn-login:hover {
+      background-color: #a67749;
+    }
+
+    .demo-credentials {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: #fff9f0;
+      border-radius: 5px;
+      border-left: 3px solid #d4a574;
+    }
+
+    .demo-credentials p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #6b5644;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-credentials small {
+      color: #8b7355;
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    /* Right Side - Image */
+    .image-section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .image-section img {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Alert Messages */
+    .alert {
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #721c24;
+      border-left: 3px solid #dc3545;
+    }
+
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+      border-left: 3px solid #28a745;
+    }
+
+    .invalid-feedback {
+      color: #dc3545;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 968px) {
+      .login-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .image-section {
+        display: none;
+      }
+
+      .form-section {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <!-- Login Section -->
+  <div class="login-wrapper">
+    <div class="login-content">
+      <!-- Left Side - Form -->
+      <div class="form-section">
+        <h2>Welcome Back</h2>
+        <p>Login to continue your artistic journey</p>
+
+        <div id="errorAlert" class="alert alert-danger" role="alert"></div>
+        <div id="successAlert" class="alert alert-success" role="alert"></div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input 
+              type="email" 
+              class="form-input" 
+              id="email" 
+              placeholder="Enter your email"
+            >
+            <div class="invalid-feedback" id="emailError"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input 
+              type="password" 
+              class="form-input" 
+              id="password" 
+              placeholder="Enter your password"
+            >
+            <div class="invalid-feedback" id="passwordError"></div>
+          </div>
+
+          <button type="submit" class="btn-login">Login</button>
+        </form>
+
+        <div class="demo-credentials">
+          <p><strong>Demo Credentials:</strong></p>
+          <small>
+            <strong>Admin:</strong> admin@artacademy.com / admin123<br>
+            <strong>User:</strong> user@artacademy.com / user123
+          </small>
+        </div>
+      </div>
+
+      <!-- Right Side - Image -->
+      <div class="image-section">
+        <img 
+          src="../assets/images/students_painting.png" 
+          alt="Art students learning painting techniques at Canvas and Color Art Academy - creative classroom environment with students engaged in artistic activities"
+          title="Students Learning Art at Canvas & Color Academy"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/login.js"></script>
+  <script src="../js/components.js"></script>
+</body>
+
+</html>

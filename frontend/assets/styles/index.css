@@ -17,15 +17,36 @@ body {
 
 .nav-link {
   color: #fff !important;
-  margin: 0 15px;
+  margin: 0 10px;
+  transition: all 0.3s;
+  position: relative;
 }
 
 .nav-link:hover {
   color: #f9f3e8 !important;
 }
 
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  background-color: #fff;
+  transition: all 0.3s;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 80%;
+}
+
 .banner {
-  background: linear-gradient(rgba(210, 188, 163, 0.3), rgba(210, 188, 163, 0.3)),
+  background: linear-gradient(
+      rgba(210, 188, 163, 0.3),
+      rgba(210, 188, 163, 0.3)
+    ),
     url("../../images/canvas_color_art_academy.png") center/cover;
   height: 500px;
   display: flex;
@@ -93,7 +114,8 @@ footer a:hover {
   color: #f9f3e8;
 }
 
-h2, h3 {
+h2,
+h3 {
   color: #7d5a3a;
 }
 
@@ -103,5 +125,14 @@ h2, h3 {
   }
   .banner p {
     font-size: 1.1rem;
+  }
+  .nav-link::after {
+    display: none;
+  }
+  .navbar {
+    padding: 0.8rem 0;
+  }
+  .navbar-brand {
+    font-size: 1.2rem;
   }
 }
