@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000/api";
+const API_BASE = "https://canvas-color-backend.onrender.com/api";
 let currentUser = null;
 
 // Check authentication and load user data
