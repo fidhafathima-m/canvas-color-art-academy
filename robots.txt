@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://canvas-color-art-academy.vercel.app/sitemap.xml
