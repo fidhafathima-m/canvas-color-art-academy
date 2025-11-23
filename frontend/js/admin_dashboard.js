@@ -57,12 +57,16 @@ async function checkAuth() {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
 
+    console.log("🔐 Auth Check - Token:", token ? "Exists" : "Missing");
+    console.log("🔐 Auth Check - User:", user ? "Exists" : "Missing");
+
     // Basic validation
     if (!token || !user) {
       throw new Error("No authentication data found");
     }
 
     currentUser = JSON.parse(user);
+    console.log("🔐 Current User Role:", currentUser.role);
 
     // Immediate role check
     if (currentUser.role !== "admin") {
@@ -70,22 +74,24 @@ async function checkAuth() {
     }
 
     // Verify token with server
+    console.log("🔄 Verifying token with server...");
     const response = await fetch(`${API_BASE}/auth/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
+    console.log("🔐 Server response status:", response.status);
+    
     if (!response.ok) {
       throw new Error(`Server returned ${response.status}`);
     }
 
     const data = await response.json();
+    console.log("🔐 Server response data:", data);
 
     if (!data.success) {
-      throw new Error(
-        "Server authentication failed: " + (data.message || "Unknown error")
-      );
+      throw new Error("Server authentication failed: " + (data.message || "Unknown error"));
     }
 
     // Final role verification from server
@@ -93,6 +99,7 @@ async function checkAuth() {
       throw new Error("Server role verification failed");
     }
 
+    console.log("✅ Authentication successful");
     hideLoadingOverlay();
 
     // Only now initialize the dashboard
@@ -100,17 +107,14 @@ async function checkAuth() {
     loadDashboardData();
     initSidebar();
   } catch (error) {
-    console.error("Authentication failed:", error);
+    console.error("❌ Authentication failed:", error);
     hideLoadingOverlay();
 
     // Clear invalid credentials
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    // Show error message to user
-    alert("Authentication failed. Please login again.");
-
-    // Redirect to login
+    // Redirect to login immediately without alert
     window.location.href = "login.html";
   }
 }
@@ -149,17 +153,21 @@ async function loadDashboardData() {
     }
   } catch (error) {
     console.error("Failed to load dashboard data:", error);
-    // Don't redirect here, just show error
     document.getElementById("dashboardMessage").textContent =
       "Error loading dashboard data. Please refresh the page.";
   }
 }
 
-// Logout function
+// Enhanced logout function
 async function logout() {
   if (confirm("Are you sure you want to logout?")) {
     try {
       const token = localStorage.getItem("token");
+      // Clear localStorage first for immediate logout
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      
+      // Then call logout API
       await fetch(`${API_BASE}/auth/logout`, {
         method: "POST",
         headers: {
@@ -169,20 +177,74 @@ async function logout() {
     } catch (error) {
       console.error("Logout error:", error);
     } finally {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      window.location.href = "login.html";
+      // Force redirect and prevent caching
+      window.location.replace("login.html");
     }
   }
 }
 
+// Prevent page caching
+function disableCaching() {
+  // Set no-cache headers via meta tags
+  const meta = document.createElement('meta');
+  meta.httpEquiv = 'Cache-Control';
+  meta.content = 'no-cache, no-store, must-revalidate';
+  document.head.appendChild(meta);
+
+  const meta2 = document.createElement('meta');
+  meta2.httpEquiv = 'Pragma';
+  meta2.content = 'no-cache';
+  document.head.appendChild(meta2);
+
+  const meta3 = document.createElement('meta');
+  meta3.httpEquiv = 'Expires';
+  meta3.content = '0';
+  document.head.appendChild(meta3);
+}
+
+// Check authentication when page becomes visible
+function setupVisibilityCheck() {
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+      console.log('Page became visible, rechecking auth...');
+      checkAuth();
+    }
+  });
+
+  // Also check when window gains focus
+  window.addEventListener('focus', function() {
+    console.log('Window focused, rechecking auth...');
+    checkAuth();
+  });
+
+  // Check on page load
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+      console.log('Page loaded from cache, rechecking auth...');
+      checkAuth();
+    }
+  });
+}
+
 // Event listeners
 document.addEventListener("DOMContentLoaded", function () {
+  // Disable caching
+  disableCaching();
+  
+  // Setup visibility and focus checks
+  setupVisibilityCheck();
+
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", logout);
   }
 
   // Start authentication check
+  checkAuth();
+});
+
+// Prevent back navigation after logout
+window.addEventListener('popstate', function(event) {
+  console.log('Back button pressed, checking auth...');
   checkAuth();
 });
