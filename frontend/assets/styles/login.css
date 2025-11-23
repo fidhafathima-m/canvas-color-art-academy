@@ -98,6 +98,36 @@ body {
   color: #b8a590;
 }
 
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #b1824f;
+  cursor: pointer;
+  padding: 0.75rem 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+  color: #8b7355;
+}
+
+.password-toggle:focus {
+  outline: none;
+}
+
+.password-input-container .form-input {
+  padding-right: 3rem;
+}
+
 .btn-login {
   width: 100%;
   padding: 0.9rem;

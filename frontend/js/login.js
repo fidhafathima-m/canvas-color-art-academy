@@ -47,6 +47,28 @@ function hideLoading() {
   btnLoading.style.display = "none";
 }
 
+// Password toggle functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const passwordToggle = document.getElementById("passwordToggle");
+  const passwordInput = document.getElementById("password");
+  const passwordIcon = passwordToggle.querySelector("i");
+
+  passwordToggle.addEventListener("click", function () {
+    const type =
+      passwordInput.getAttribute("type") === "password" ? "text" : "password";
+    passwordInput.setAttribute("type", type);
+
+    // Toggle eye icon
+    if (type === "text") {
+      passwordIcon.classList.remove("fa-eye");
+      passwordIcon.classList.add("fa-eye-slash");
+    } else {
+      passwordIcon.classList.remove("fa-eye-slash");
+      passwordIcon.classList.add("fa-eye");
+    }
+  });
+});
+
 // Login function
 async function login(email, password) {
   try {
