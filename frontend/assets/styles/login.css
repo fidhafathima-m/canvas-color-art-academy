@@ -7,29 +7,51 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #faf8f5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Main Login Container */
+.container {
+  padding: 1rem 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.navbar-brand-login {
+  color: #3f3f3fff !important;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.4rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
 .login-wrapper {
-  min-height: calc(100vh - 140px);
+  flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem 1rem;
+  align-items: stretch;
+  padding: 0;
+  margin-top: 0;
 }
 
 .login-content {
-  max-width: 1200px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+  gap: 0;
+  align-items: stretch;
+  height: 100%;
 }
 
 /* Left Side - Form */
 .form-section {
-  padding: 2rem 3rem;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #faf8f5;
+  height: 100%;
 }
 
 .form-section h2 {
@@ -101,7 +123,8 @@ body {
   background-color: #a67749;
 }
 
-.btn-text, .btn-loading {
+.btn-text,
+.btn-loading {
   transition: opacity 0.3s ease;
 }
 
@@ -109,7 +132,7 @@ body {
   margin-right: 8px;
 }
 
-/* Loading overlay for better UX */
+/* Loading overlay  */
 .loading-overlay {
   position: fixed;
   top: 0;
@@ -172,20 +195,21 @@ body {
   line-height: 1.6;
 }
 
-/* Right Side - Image */
 .image-section {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 0;
+  height: 100%;
 }
 
 .image-section img {
   width: 100%;
-  max-width: 700px;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
 }
 
 /* Alert Messages */
@@ -215,11 +239,41 @@ body {
   display: none;
 }
 
+/* Footer Styles */
+footer {
+  background-color: #c29462ff;
+  color: #fff;
+  padding: 40px 0 20px;
+  width: 100%;
+  margin-top: auto;
+}
+
+footer a {
+  color: #fdfbf7;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: #f9f3e8;
+}
+
+.social-icons a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 1.3rem;
+}
+
+.social-icons a:hover {
+  color: #f9f3e8;
+}
+
 /* Responsive Design */
 @media (max-width: 968px) {
   .login-content {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 0;
   }
 
   .image-section {
@@ -227,6 +281,16 @@ body {
   }
 
   .form-section {
-    padding: 1rem;
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .form-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .form-section h2 {
+    font-size: 1.75rem;
   }
 }

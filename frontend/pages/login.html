@@ -6,13 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Canvas & Color Art Academy</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/styles/index.css">
-  <link rel="stylesheet" href="../assets/styles/login.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles/index.css">
+  <link rel="stylesheet" href="/assets/styles/login.css">
 </head>
 
 <body>
-  <!-- Header -->
-  <div id="header-container"></div>
+  <!-- Header and navbar -->
+  <div class="container">
+    <a class="navbar-brand-login" href="/">
+      Canvas & Color Art Academy
+    </a>
+  </div>
 
   <!-- Login Section -->
   <div class="login-wrapper">
@@ -25,26 +30,16 @@
         <div id="errorAlert" class="alert alert-danger" role="alert"></div>
         <div id="successAlert" class="alert alert-success" role="alert"></div>
 
-                <form id="loginForm">
+        <form id="loginForm">
           <div class="form-group">
             <label for="email" class="form-label">Email Address</label>
-            <input 
-              type="email" 
-              class="form-input" 
-              id="email" 
-              placeholder="Enter your email"
-            >
+            <input type="email" class="form-input" id="email" placeholder="Enter your email">
             <div class="invalid-feedback" id="emailError"></div>
           </div>
 
           <div class="form-group">
             <label for="password" class="form-label">Password</label>
-            <input 
-              type="password" 
-              class="form-input" 
-              id="password" 
-              placeholder="Enter your password"
-            >
+            <input type="password" class="form-input" id="password" placeholder="Enter your password">
             <div class="invalid-feedback" id="passwordError"></div>
           </div>
 
@@ -67,22 +62,40 @@
 
       <!-- Right Side - Image -->
       <div class="image-section">
-        <img 
-          src="/assets/images/students_painting.png" 
-          alt="Art students learning painting techniques at Canvas and Color Art Academy - creative classroom environment with students engaged in artistic activities"
-          title="Students Learning Art at Canvas & Color Academy"
-          loading="lazy"
-        >
+        <img src="/assets/images/students_painting.png" alt="Art students learning painting techniques at Canvas and Color Art Academy - creative classroom environment with students engaged in artistic activities" title="Students Learning Art at Canvas & Color Academy" loading="lazy">
       </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <div id="footer-container"></div>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h5>Contact Information</h5>
+          <p>Email: <a href="mailto:canvas.color.art@gmail.com">canvas.color.art@gmail.com</a></p>
+          <p>Phone: +91 9993337777</p>
+        </div>
+        <div class="col-md-6 mb-3 text-md-end">
+          <h5>Follow Us</h5>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr style="border-color: rgba(255,255,255,0.2);">
+      <div class="row">
+        <div class="col-12 text-center">
+          <p class="mb-0">&copy; 2024 Canvas & Color Art Academy. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/login.js"></script>
-  <script src="../js/components.js"></script>
+  <script src="/js/login.js"></script>
 </body>
 
 </html>
