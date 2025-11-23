@@ -25,13 +25,18 @@ async function seedData() {
             password: 'user123',
             role: 'user'
         });
+        const regularUser2 = new User({
+            name: 'Student User 2',
+            email: 'user2@artacademy.com', 
+            password: 'user1234',
+            role: 'user'
+        });
 
         await adminUser.save();
         await regularUser.save();
+        await regularUser2.save();
 
-        console.log('✅ Demo users created successfully!');
-        console.log('Admin: admin@artacademy.com / admin123');
-        console.log('User: user@artacademy.com / user123');
+        console.log('Demo users created successfully!');
 
     } catch (error) {
         console.error('Error seeding data:', error);
